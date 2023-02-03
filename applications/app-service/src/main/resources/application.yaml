@@ -1,0 +1,44 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: "arquitectura-hexagonal"
+  devtools:
+    add-properties: false
+  rabbitmq:
+      host: "localhost"
+      port: 5672
+      username: "guest"
+      password: "guest"
+      virtual-host: "/"
+  profiles:
+    include: null
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+     url: "jdbc:mysql://127.0.0.1:3306/agencia_viajes"
+     username: "root"
+     password: ""
+#     driver-class-name: "com.mysql.cj.jdbc.Driver"
+  jpa:
+    databasePlatform: "org.hibernate.dialect.MySQL5InnoDBDialect"
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+        hbm2ddl:
+          auto: "update"
+adapter:
+  restconsumer:
+    timeout: 5000
+    url: "http://localhost:8080"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  endpoint:
+    health:
+      probes:
+        enabled: true
