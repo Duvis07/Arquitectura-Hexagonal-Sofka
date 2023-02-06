@@ -19,7 +19,7 @@ spring:
      url: "jdbc:mysql://127.0.0.1:3306/agencia_viajes"
      username: "root"
      password: ""
-#     driver-class-name: "com.mysql.cj.jdbc.Driver"
+     driverClassName: "com.mysql.cj.jdbc.Driver"
   jpa:
     databasePlatform: "org.hibernate.dialect.MySQL5InnoDBDialect"
     properties:
