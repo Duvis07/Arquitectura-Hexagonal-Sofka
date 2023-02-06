@@ -34,8 +34,12 @@ public class PersonaRepositoryAdapter extends AdapterOperations < Persona, Perso
 
     @Override
     public Mono < Persona > crearPersona ( Persona persona ) {
+      if (persona != null) {
         PersonaData personaData = Convertidor.convertirPersonaToPersonaData ( persona );
-        return Mono.just ( repository.save ( personaData ) ).map ( personaData1 -> Convertidor.convertirPersonaDataToPersona ( personaData1 ) );
+        return Mono.just ( Convertidor.convertirPersonaDataToPersona ( repository.save ( personaData ) ) );
+      } else {
+        return Mono.empty ( );
+      }
     }
 
     @Override
