@@ -35,6 +35,7 @@ public class PersonaData {
     @Column(name = "tipo_sangre")
     private String tipoSangre;
 
+
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_persona")
     private List < ViajeData > viajes;
