@@ -2,13 +2,11 @@ package co.com.sofka.api;
 import co.com.sofka.model.persona.Persona;
 import co.com.sofka.usecase.persona.PersonaUseCase;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Slf4j
 @RestController
@@ -20,6 +18,18 @@ public class PersonaRest {
     @GetMapping(value = "/personas")
   public Flux< Persona > buscarPersonasParaViajar(){
         return personaUseCase.buscarPersonas();
+    }
+
+
+    @GetMapping(value = "/personas/{id}")
+    public Mono< Persona > buscarPersonaPorId(@PathVariable("id") Integer id){
+        return personaUseCase.buscarPersonaPorId(id);
+    }
+
+
+    @PostMapping(value = "/personas")
+    public Mono< Persona > crearPersona(@RequestBody Persona persona){
+        return personaUseCase.guardarPersona(persona);
     }
 
 

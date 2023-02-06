@@ -10,6 +10,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -33,11 +34,15 @@ public class PersonaRepositoryAdapter extends AdapterOperations < Persona, Perso
 
     @Override
     public Mono < Persona > crearPersona ( Persona persona ) {
-        return null;
+        PersonaData personaData = Convertidor.convertirPersonaToPersonaData ( persona );
+        return Mono.just ( repository.save ( personaData ) ).map ( personaData1 -> Convertidor.convertirPersonaDataToPersona ( personaData1 ) );
     }
 
     @Override
     public Mono < Persona > buscarPersonaPorId ( Integer id ) {
-        return null;
+        Optional < PersonaData > personaData = repository.findById ( id );
+        return personaData.map ( personaData1 -> Mono.just ( Convertidor.convertirPersonaDataToPersona ( personaData1 ) ) ).orElseGet ( Mono::empty );
     }
+
+
 }

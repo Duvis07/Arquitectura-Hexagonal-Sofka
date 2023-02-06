@@ -27,8 +27,10 @@ public class Convertidor {
 
     public static Persona convertirPersonaDataToPersona ( PersonaData personaData ) {
         return Persona.builder ( )
-                .cedula ( personaData.getIdPersona ( ) ).nombre ( personaData.getNombrePersona ( ) )
-                .fechaNacimiento ( personaData.getFechaNacimiento ( ) ).tipoSangre ( personaData.getTipoSangre ( ) )
+                .cedula ( personaData.getIdPersona ( ) )
+                .nombre ( personaData.getNombrePersona ( ) )
+                .fechaNacimiento ( personaData.getFechaNacimiento ( ) )
+                .tipoSangre ( personaData.getTipoSangre ( ) )
                 .viajes ( convertirViajeDataToViajes ( personaData.getViajes ( ) ) )
                 .build ( );
 
